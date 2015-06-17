@@ -2,15 +2,16 @@
 
 namespace blogBundle\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Utilisateurs
  *
- * @ORM\Table()
- * @ORM\Entity(repositoryClass="blogBundle\Entity\UtilisateursRepository")
+ * @ORM\Entity()
+ * @ORM\Table(name="Utilisateurs")
  */
-class Utilisateurs
+class Utilisateurs extends BaseUser
 {
     /**
      * @var integer
@@ -19,36 +20,36 @@ class Utilisateurs
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="pseudo", type="string", length=255)
      */
-    private $pseudo;
+    protected $pseudo;
 
     /**
      * @var string
      *
      * @ORM\Column(name="mdp", type="string", length=255)
      */
-    private $mdp;
+    protected $mdp;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255)
-     */
-    private $email;
 
     /**
      * @var string
      *
      * @ORM\Column(name="role", type="string", length=255)
      */
-    private $role;
+    protected $role;
 
+
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+    }
 
     /**
      * Get id
@@ -104,29 +105,6 @@ class Utilisateurs
     public function getMdp()
     {
         return $this->mdp;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     * @return Utilisateurs
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
     }
 
     /**
