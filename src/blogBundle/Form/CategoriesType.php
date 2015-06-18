@@ -16,6 +16,7 @@ class CategoriesType extends AbstractType
     {
         $builder
             ->add('nom')
+            ->add('Enregistrer', 'submit')
         ;
     }
     
