@@ -1,3 +1,11 @@
+blog_pageCategorie:
+    resource: "@blogBundle/Resources/config/routing/categories.yml"
+    prefix:   /pageCategorie
+
+blog_pagePhoto:
+    resource: "@blogBundle/Resources/config/routing/photos.yml"
+    prefix:   /pagePhoto
+
 blog_homepage:
     path:     /
     defaults: { _controller: blogBundle:Default:index }

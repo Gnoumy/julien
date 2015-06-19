@@ -4,16 +4,13 @@ namespace blogBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 use blogBundle\Entity\Categories;
 use blogBundle\Form\CategoriesType;
 
 /**
  * Categories controller.
  *
- * @Route("/categories")
  */
 class CategoriesController extends Controller
 {
@@ -21,9 +18,6 @@ class CategoriesController extends Controller
     /**
      * Lists all Categories entities.
      *
-     * @Route("/", name="categories")
-     * @Method("GET")
-     * @Template()
      */
     public function indexAction()
     {
@@ -31,16 +25,13 @@ class CategoriesController extends Controller
 
         $entities = $em->getRepository('blogBundle:Categories')->findAll();
 
-        return array(
+        return $this->render('blogBundle:Categories:index.html.twig', array(
             'entities' => $entities,
-        );
+        ));
     }
     /**
      * Creates a new Categories entity.
      *
-     * @Route("/", name="categories_create")
-     * @Method("POST")
-     * @Template("blogBundle:Categories:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -53,13 +44,13 @@ class CategoriesController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('categories_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('pageCategorie_show', array('id' => $entity->getId())));
         }
 
-        return array(
+        return $this->render('blogBundle:Categories:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-        );
+        ));
     }
 
     /**
@@ -72,7 +63,7 @@ class CategoriesController extends Controller
     private function createCreateForm(Categories $entity)
     {
         $form = $this->createForm(new CategoriesType(), $entity, array(
-            'action' => $this->generateUrl('categories_create'),
+            'action' => $this->generateUrl('pageCategorie_create'),
             'method' => 'POST',
         ));
 
@@ -84,27 +75,21 @@ class CategoriesController extends Controller
     /**
      * Displays a form to create a new Categories entity.
      *
-     * @Route("/new", name="categories_new")
-     * @Method("GET")
-     * @Template()
      */
     public function newAction()
     {
         $entity = new Categories();
         $form   = $this->createCreateForm($entity);
 
-        return array(
+        return $this->render('blogBundle:Categories:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-        );
+        ));
     }
 
     /**
      * Finds and displays a Categories entity.
      *
-     * @Route("/{id}", name="categories_show")
-     * @Method("GET")
-     * @Template()
      */
     public function showAction($id)
     {
@@ -118,18 +103,15 @@ class CategoriesController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return $this->render('blogBundle:Categories:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
-        );
+        ));
     }
 
     /**
      * Displays a form to edit an existing Categories entity.
      *
-     * @Route("/{id}/edit", name="categories_edit")
-     * @Method("GET")
-     * @Template()
      */
     public function editAction($id)
     {
@@ -144,11 +126,11 @@ class CategoriesController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return $this->render('blogBundle:Categories:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ));
     }
 
     /**
@@ -161,7 +143,7 @@ class CategoriesController extends Controller
     private function createEditForm(Categories $entity)
     {
         $form = $this->createForm(new CategoriesType(), $entity, array(
-            'action' => $this->generateUrl('categories_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('pageCategorie_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -172,9 +154,6 @@ class CategoriesController extends Controller
     /**
      * Edits an existing Categories entity.
      *
-     * @Route("/{id}", name="categories_update")
-     * @Method("PUT")
-     * @Template("blogBundle:Categories:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
@@ -193,20 +172,18 @@ class CategoriesController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('categories_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('pageCategorie_edit', array('id' => $id)));
         }
 
-        return array(
+        return $this->render('blogBundle:Categories:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ));
     }
     /**
      * Deletes a Categories entity.
      *
-     * @Route("/{id}", name="categories_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
     {
@@ -225,7 +202,7 @@ class CategoriesController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('categories'));
+        return $this->redirect($this->generateUrl('pageCategorie'));
     }
 
     /**
@@ -238,7 +215,7 @@ class CategoriesController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('categories_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('pageCategorie_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

@@ -1,0 +1,30 @@
+pagePhoto:
+    path:     /
+    defaults: { _controller: "blogBundle:Photos:index" }
+
+pagePhoto_show:
+    path:     /{id}/show
+    defaults: { _controller: "blogBundle:Photos:show" }
+
+pagePhoto_new:
+    path:     /new
+    defaults: { _controller: "blogBundle:Photos:new" }
+
+pagePhoto_create:
+    path:     /create
+    defaults: { _controller: "blogBundle:Photos:create" }
+    methods:  POST
+
+pagePhoto_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "blogBundle:Photos:edit" }
+
+pagePhoto_update:
+    path:     /{id}/update
+    defaults: { _controller: "blogBundle:Photos:update" }
+    methods:  [POST, PUT]
+
+pagePhoto_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "blogBundle:Photos:delete" }
+    methods:  [POST, DELETE]

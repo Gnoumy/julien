@@ -1,0 +1,30 @@
+pageCategorie:
+    path:     /
+    defaults: { _controller: "blogBundle:Categories:index" }
+
+pageCategorie_show:
+    path:     /{id}/show
+    defaults: { _controller: "blogBundle:Categories:show" }
+
+pageCategorie_new:
+    path:     /new
+    defaults: { _controller: "blogBundle:Categories:new" }
+
+pageCategorie_create:
+    path:     /create
+    defaults: { _controller: "blogBundle:Categories:create" }
+    methods:  POST
+
+pageCategorie_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "blogBundle:Categories:edit" }
+
+pageCategorie_update:
+    path:     /{id}/update
+    defaults: { _controller: "blogBundle:Categories:update" }
+    methods:  [POST, PUT]
+
+pageCategorie_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "blogBundle:Categories:delete" }
+    methods:  [POST, DELETE]

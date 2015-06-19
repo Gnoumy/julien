@@ -4,16 +4,13 @@ namespace blogBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 use blogBundle\Entity\Photos;
 use blogBundle\Form\PhotosType;
 
 /**
  * Photos controller.
  *
- * @Route("/photos")
  */
 class PhotosController extends Controller
 {
@@ -21,9 +18,6 @@ class PhotosController extends Controller
     /**
      * Lists all Photos entities.
      *
-     * @Route("/", name="photos")
-     * @Method("GET")
-     * @Template()
      */
     public function indexAction()
     {
@@ -31,16 +25,13 @@ class PhotosController extends Controller
 
         $entities = $em->getRepository('blogBundle:Photos')->findAll();
 
-        return array(
+        return $this->render('blogBundle:Photos:index.html.twig', array(
             'entities' => $entities,
-        );
+        ));
     }
     /**
      * Creates a new Photos entity.
      *
-     * @Route("/", name="photos_create")
-     * @Method("POST")
-     * @Template("blogBundle:Photos:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -53,13 +44,13 @@ class PhotosController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('photos_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('pagePhoto_show', array('id' => $entity->getId())));
         }
 
-        return array(
+        return $this->render('blogBundle:Photos:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-        );
+        ));
     }
 
     /**
@@ -72,7 +63,7 @@ class PhotosController extends Controller
     private function createCreateForm(Photos $entity)
     {
         $form = $this->createForm(new PhotosType(), $entity, array(
-            'action' => $this->generateUrl('photos_create'),
+            'action' => $this->generateUrl('pagePhoto_create'),
             'method' => 'POST',
         ));
 
@@ -84,27 +75,21 @@ class PhotosController extends Controller
     /**
      * Displays a form to create a new Photos entity.
      *
-     * @Route("/new", name="photos_new")
-     * @Method("GET")
-     * @Template()
      */
     public function newAction()
     {
         $entity = new Photos();
         $form   = $this->createCreateForm($entity);
 
-        return array(
+        return $this->render('blogBundle:Photos:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-        );
+        ));
     }
 
     /**
      * Finds and displays a Photos entity.
      *
-     * @Route("/{id}", name="photos_show")
-     * @Method("GET")
-     * @Template()
      */
     public function showAction($id)
     {
@@ -118,18 +103,15 @@ class PhotosController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return $this->render('blogBundle:Photos:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
-        );
+        ));
     }
 
     /**
      * Displays a form to edit an existing Photos entity.
      *
-     * @Route("/{id}/edit", name="photos_edit")
-     * @Method("GET")
-     * @Template()
      */
     public function editAction($id)
     {
@@ -144,11 +126,11 @@ class PhotosController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return $this->render('blogBundle:Photos:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ));
     }
 
     /**
@@ -161,7 +143,7 @@ class PhotosController extends Controller
     private function createEditForm(Photos $entity)
     {
         $form = $this->createForm(new PhotosType(), $entity, array(
-            'action' => $this->generateUrl('photos_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('pagePhoto_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -172,9 +154,6 @@ class PhotosController extends Controller
     /**
      * Edits an existing Photos entity.
      *
-     * @Route("/{id}", name="photos_update")
-     * @Method("PUT")
-     * @Template("blogBundle:Photos:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
@@ -193,20 +172,18 @@ class PhotosController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('photos_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('pagePhoto_edit', array('id' => $id)));
         }
 
-        return array(
+        return $this->render('blogBundle:Photos:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ));
     }
     /**
      * Deletes a Photos entity.
      *
-     * @Route("/{id}", name="photos_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
     {
@@ -225,7 +202,7 @@ class PhotosController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('photos'));
+        return $this->redirect($this->generateUrl('pagePhoto'));
     }
 
     /**
@@ -238,7 +215,7 @@ class PhotosController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('photos_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('pagePhoto_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
