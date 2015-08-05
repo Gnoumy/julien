@@ -4,12 +4,17 @@ namespace blogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use blogBundle\Entity\Categories;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-    	$Categorie
-        return $this->render('blogBundle:Default:index.html.twig');
+
+    	$em = $this->getDoctrine()->getManager();
+    	$Categorie = $em->getRepository('blogBundle:Categories')->findAll();
+
+        return $this->render('blogBundle:Default:index.html.twig', array('Categories' => $Categorie));
     }
 }
