@@ -8,6 +8,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+    	
         return $this->render('blogBundle:Default:index.html.twig');
     }
 }
