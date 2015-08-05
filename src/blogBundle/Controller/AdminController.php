@@ -10,12 +10,9 @@ class AdminController extends Controller
 {
     public function indexAction()
     {
-
     	$categories = new Categories();
     	$form = $this->createForm(new CategoriesType(), $categories);
 
-
-    	
         return $this->render('blogBundle:Admin:index.html.twig', array(
         	'formCategorie' => $form->createView())
         );

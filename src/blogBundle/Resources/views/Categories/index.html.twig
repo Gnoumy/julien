@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Categories list</h1>
+    <h1>Liste des Catégories</h1>
 
     <table class="records_list">
         <thead>
@@ -19,10 +19,10 @@
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('pageCategorie_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('pageCategorie_show', { 'id': entity.id }) }}">Aperçu</a>
                     </li>
                     <li>
-                        <a href="{{ path('pageCategorie_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('pageCategorie_edit', { 'id': entity.id }) }}">Editer</a>
                     </li>
                 </ul>
                 </td>
@@ -34,7 +34,7 @@
         <ul>
         <li>
             <a href="{{ path('pageCategorie_new') }}">
-                Create a new entry
+                Créer une nouvelle catégorie
             </a>
         </li>
     </ul>
