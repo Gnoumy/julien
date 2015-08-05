@@ -22,6 +22,13 @@ class Photos
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="blogBundle\Entity\Categories", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $photo;
+
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="position", type="integer")
