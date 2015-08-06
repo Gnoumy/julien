@@ -1,10 +1,10 @@
 blog_pageCategorie:
     resource: "@blogBundle/Resources/config/routing/categories.yml"
-    prefix:   /admin/pageCategorie
+    prefix:   /admin/Categories
 
 blog_pagePhoto:
     resource: "@blogBundle/Resources/config/routing/photos.yml"
-    prefix:   /admin/pagePhoto
+    prefix:   /admin/Photos
 
 blog_homepage:
     path:     /
