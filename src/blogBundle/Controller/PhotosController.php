@@ -41,7 +41,7 @@ class PhotosController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $document->upload(); //Si le formulaire est valide, on upload le fichier
+            $entity->upload(); //Si le formulaire est valide, on upload le fichier
             $em->persist($entity);
             $em->flush();
 
