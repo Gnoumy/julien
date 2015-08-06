@@ -19,6 +19,8 @@ class PhotosType extends AbstractType
             ->add('nom')
             ->add('contributeur')
             ->add('description')
+            /*->add('categorie')*/
+            ->add('categorie', 'entity', array('class' => 'blogBundle\Entity\Categories', 'property' => 'nom'))
         ;
     }
     

@@ -23,9 +23,9 @@ class Photos
 
     /**
      * @ORM\ManyToOne(targetEntity="blogBundle\Entity\Categories", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="categorie_nom", referencedColumnName="id", nullable=false)
      */
-    private $photo;
+    protected $categorie;
 
 
     /**
@@ -56,6 +56,9 @@ class Photos
      */
     private $description;
 
+
+  
+    
 
     /**
      * Get id
@@ -157,5 +160,28 @@ class Photos
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set categorie
+     *
+     * @param \blogBundle\Entity\Categories $categorie
+     * @return Photos
+     */
+    public function setCategorie(\blogBundle\Entity\Categories $categorie)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return \blogBundle\Entity\Categories 
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
     }
 }

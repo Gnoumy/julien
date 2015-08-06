@@ -13,8 +13,8 @@ class DefaultController extends Controller
     {
 
     	$em = $this->getDoctrine()->getManager();
-    	$Categorie = $em->getRepository('blogBundle:Categories')->findAll();
+    	$Categories = $em->getRepository('blogBundle:Categories')->findAll();
 
-        return $this->render('blogBundle:Default:index.html.twig', array('Categories' => $Categorie));
+        return $this->render('blogBundle:Default:index.html.twig', array('Categories' => $Categories));
     }
 }
