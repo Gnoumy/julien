@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="row">
-            <h1>Photos</h1>
+            <h1>Infos</h1>
 
             <table class="record_properties table">
                 <tbody>
@@ -37,7 +37,7 @@
 
             <ul class="record_actions">
                 <li>
-                    <a href="{{ path('pagePhoto') }}">Retour à la liste</a>
+                    <a class="btn btn-primary" href="{{ path('pagePhoto') }}">Retour à la liste</a>
                 </li>
                 <li>
                     <a href="{{ path('pagePhoto_edit', { 'id': entity.id }) }}">Edit</a>
