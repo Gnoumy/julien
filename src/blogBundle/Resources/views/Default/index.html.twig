@@ -1,6 +1,20 @@
-Hello world !
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+		{% for Categorie in Categories %}
+			<li>{{ Categorie.nom }}</li>
+		{% endfor %}
 
 
-{% for Categorie in Categories %}
-	<li>{{ Categorie.nom }}</li>
-{% endfor %}
+      
+
+      <!-- Site footer -->
+      <footer class="footer">
+        <p>&copy; Julien Gaucher {{ "now"|date("Y") }}</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+
+{% endblock %}
