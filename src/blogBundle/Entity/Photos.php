@@ -26,7 +26,7 @@ class Photos
      * @ORM\ManyToOne(targetEntity="blogBundle\Entity\Categories", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="categorie_nom", referencedColumnName="id", nullable=false)
      */
-    protected $categorie;
+    private $categorie;
 
 
     /**

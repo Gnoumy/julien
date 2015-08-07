@@ -1,4 +1,5 @@
 {% extends '::base.html.twig' %}
+
 {% block body -%}
     <h1>Photos list</h1>
 
@@ -10,6 +11,7 @@
                 <th>Nom</th>
                 <th>Contributeur</th>
                 <th>Description</th>
+                <th>Image</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -21,6 +23,7 @@
                 <td>{{ entity.nom }}</td>
                 <td>{{ entity.contributeur }}</td>
                 <td>{{ entity.description }}</td>
+                <td>{{ entity.path }}</td>
                 <td>
                 <ul>
                     <li>

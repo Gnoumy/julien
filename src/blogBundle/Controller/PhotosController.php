@@ -42,9 +42,10 @@ class PhotosController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity->upload(); //Si le formulaire est valide, on upload le fichier
+            
             $em->persist($entity);
             $em->flush();
-
+            /*var_dump($entity);exit();*/
             return $this->redirect($this->generateUrl('pagePhoto_show', array('id' => $entity->getId())));
         }
 
