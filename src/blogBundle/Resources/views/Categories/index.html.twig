@@ -1,41 +1,40 @@
-{% extends '::base.html.twig' %}
+{% extends '::admin.html.twig' %}
 
 {% block body -%}
-    <h1>Liste des Catégories</h1>
+    <div class="container">
+        <div class="row">
+            <h1>Liste des Catégories</h1>
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('pageCategorie_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.nom }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('pageCategorie_show', { 'id': entity.id }) }}">Aperçu</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('pageCategorie_edit', { 'id': entity.id }) }}">Editer</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <table class="records_list table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td><a href="{{ path('pageCategorie_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td>{{ entity.nom }}</td>
+                        <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('pageCategorie_show', { 'id': entity.id }) }}">Aperçu</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('pageCategorie_edit', { 'id': entity.id }) }}">Editer</a>
+                            </li>
+                        </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
-        <ul>
-        <li>
-            <a href="{{ path('pageCategorie_new') }}">
-                Créer une nouvelle catégorie
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+            <a class="btn btn-primary" href="{{ path('pageCategorie_new') }}">Ajouter une catégorie</a>
+        </div>
+    </div>
+   
+{% endblock %}

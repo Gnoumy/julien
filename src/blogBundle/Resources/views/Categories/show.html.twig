@@ -1,32 +1,33 @@
-{% extends '::base.html.twig' %}
+{% extends '::admin.html.twig' %}
 
 {% block body -%}
-    <h1>Categories</h1>
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ entity.nom }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container">
+        <div class="row">
+            <h1>Categories</h1>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('pageCategorie') }}">
-            Retour à la liste
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('pageCategorie_edit', { 'id': entity.id }) }}">
-            Editer
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+            <table class="record_properties table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ entity.id }}</td>
+                        <td>{{ entity.nom }}</td>
+                        <td> <a href="{{ path('pageCategorie_edit', { 'id': entity.id }) }}">Editer</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <ul class="record_actions">
+                <li><a href="{{ path('pageCategorie') }}">Retour à la liste</a></li>
+                <li>{{ form(delete_form) }}</li>
+            </ul>
+        </div>
+    </div>
+    
 {% endblock %}
