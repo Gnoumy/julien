@@ -4,6 +4,7 @@ namespace blogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Photos
@@ -23,7 +24,7 @@ class Photos
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="blogBundle\Entity\Categories", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="blogBundle\Entity\Categories", cascade={"persist"})
      * @ORM\JoinColumn(name="categorie_nom", referencedColumnName="id", nullable=false)
      */
     private $categorie;
@@ -39,21 +40,21 @@ class Photos
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="contributeur", type="string", length=255)
+     * @ORM\Column(name="contributeur", type="string", length=255, nullable=true)
      */
     private $contributeur;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
@@ -227,6 +228,7 @@ class Photos
         if (null === $this->file) {
             return;
         }
+
 
         // utilisez le nom de fichier original ici mais
         // vous devriez « l'assainir » pour au moins éviter

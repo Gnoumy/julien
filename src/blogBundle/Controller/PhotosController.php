@@ -45,6 +45,7 @@ class PhotosController extends Controller
             
             $em->persist($entity);
             $em->flush();
+            
             /*var_dump($entity);exit();*/
             return $this->redirect($this->generateUrl('pagePhoto_show', array('id' => $entity->getId())));
         }
